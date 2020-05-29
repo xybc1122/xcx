@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mp-dialog": "weui-miniprogram/dialog/dialog",
+    "van-button": "../../miniprogram_npm/vant-weapp/button"
+  }
+}

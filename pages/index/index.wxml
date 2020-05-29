@@ -1,0 +1,105 @@
+<view class="page">
+<view class="page__bd">
+
+<van-button color="#409EFF"  size="normal"  wx:if="{{isLoginType===1}}" bindtap="bindViewLogin"  class="container">请先登陆</van-button>
+<view wx:elif="{{isLoginType===2}}">
+
+<van-card
+  price="586"
+  desc="商品描述"
+  title="六年级数学"
+  thumb="{{ imageURL }}"
+>
+
+  <view slot="footer">
+    <van-button size="mini" round type="info">购买</van-button>
+  </view>
+</van-card>
+<van-card
+  price="586"
+  desc="商品描述"
+  title="六年级数学"
+  thumb="{{ imageURL }}"
+>
+  <view slot="footer">
+    <van-button size="mini" round type="info">购买</van-button>
+  </view>
+</van-card>
+<van-card
+  price="586"
+  desc="商品描述"
+  title="六年级数学"
+  thumb="{{ imageURL }}"
+>
+  <view slot="footer">
+    <van-button size="mini" round type="info">购买</van-button>
+  </view>
+</van-card>
+<van-card
+  price="586"
+  desc="商品描述"
+  title="六年级数学"
+  thumb="{{ imageURL }}"
+>
+  <view slot="footer">
+    <van-button size="mini" round type="info">购买</van-button>
+  </view>
+</van-card>
+<van-card
+  price="586"
+  desc="商品描述"
+  title="六年级数学"
+  thumb="{{ imageURL }}"
+>
+  <view slot="footer">
+    <van-button size="mini" round type="info">购买</van-button>
+  </view>
+</van-card>
+<van-card
+  price="586"
+  desc="商品描述"
+  title="六年级数学"
+>
+  <view slot="footer">
+    <van-button size="mini" round type="info">购买</van-button>
+  </view>
+</van-card>
+<van-card
+  price="586"
+  desc="商品描述"
+  title="六年级数学"
+>
+  <view slot="footer">
+    <van-button size="mini" round type="info">购买</van-button>
+  </view>
+</van-card>
+<van-card
+  price="586"
+  desc="商品描述"
+  title="六年级数学"
+>
+  <view slot="footer">
+    <van-button size="mini" round type="info">购买</van-button>
+  </view>
+</van-card>
+<van-card
+  price="586"
+  desc="商品描述"
+  title="六年级数学"
+>
+  <view slot="footer">
+    <van-button size="mini" round type="info">购买</van-button>
+  </view>
+</van-card>
+<van-card
+  price="586"
+  desc="商品描述"
+  title="六年级数学"
+>
+  <view slot="footer">
+    <van-button size="mini" round type="info">购买</van-button>
+  </view>
+</van-card>
+</view>
+</view>
+</view>

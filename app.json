@@ -1,0 +1,32 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/me/me"
+  ],
+  "useExtendedLib": {
+    "weui": true
+  },
+  "tabBar": {
+    "color": "#9E9E9E",
+    "selectedColor": "#409EFF",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "/pages/imgs/index.png",
+      "selectedIconPath":"/pages/imgs/index.png"
+    }, {
+      "pagePath": "pages/me/me",
+      "text": "我的",
+      "iconPath": "/pages/imgs/meh.png",
+      "selectedIconPath":"/pages/imgs/meh.png"
+    }]
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "学之教育",
+    "navigationBarTextStyle":"black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

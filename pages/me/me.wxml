@@ -1,0 +1,53 @@
+<view class="page">
+	<!--页头-->
+	<view class="page__hd">
+ 
+  </view>
+
+
+	<!--主体-->
+<view class="container" wx:if="{{!hasLogin}}">
+
+
+  <view class="account">
+    <view class="title">账号</view>
+    <view class="num"><input bindinput="accountInput" placeholder="请输入用户名" placeholder-style="color:#999999;"/></view>
+  </view>
+
+   <view class="hr"></view>
+
+   <view class="account">
+    <view class="title">密码</view>
+    <view class="num"><input bindinput="pwdInput" placeholder="请输入密码" password placeholder-style="color:#999999;"/>
+    </view>
+  </view>
+
+  <view class="hr"></view>
+
+  <button class="btn" bindtap='login' type="primary">登录</button>
+
+  <view>{{message}}</view>
+
+  <view bindtap="bindViewTap">
+</view>
+</view>
+
+<view wx:else>
+<view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="color:#409EFF">
+     点击添加头像 </button>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <button bindtap="bindViewTap" style='position:fixed;width:100%;bottom:0; font-size: 35rpx; color: #409EFF;'>退出登录</button>
+</view>
+    
+   <mp-dialog show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+        <view>是否退出登录</view>
+   </mp-dialog>
+  
+
+
+</view>
