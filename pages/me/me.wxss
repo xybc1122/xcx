@@ -43,3 +43,19 @@
   margin-top:40px;
   color: #999999;
 }
+
+
+.border_margin_top{
+  border-top-left-radius: 20rpx; 
+  border-top-right-radius: 20rpx; 
+   margin-right: 20rpx;
+   margin-left: 20rpx;
+}
+
+.border_margin_bottom{
+   border-bottom-left-radius: 20rpx;
+   border-bottom-right-radius: 20rpx; 
+   margin-right: 20rpx;
+   margin-left: 20rpx;
+   margin-bottom: 30rpx;
+}

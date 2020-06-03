@@ -1,8 +1,12 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/product/description",
+    "pages/order/order-info",
+    "pages/read-text",
+    "pages/text/read-text"
   ],
   "useExtendedLib": {
     "weui": true
@@ -10,23 +14,26 @@
   "tabBar": {
     "color": "#9E9E9E",
     "selectedColor": "#409EFF",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "/pages/imgs/index.png",
-      "selectedIconPath":"/pages/imgs/index.png"
-    }, {
-      "pagePath": "pages/me/me",
-      "text": "我的",
-      "iconPath": "/pages/imgs/meh.png",
-      "selectedIconPath":"/pages/imgs/meh.png"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/pages/icons/index.png",
+        "selectedIconPath": "/pages/icons/index.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "/pages/icons/meh.png",
+        "selectedIconPath": "/pages/icons/meh.png"
+      }
+    ]
   },
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "学之教育",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"
 }

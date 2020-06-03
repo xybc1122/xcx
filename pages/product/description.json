@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-submit-bar": "../../miniprogram_npm/vant-weapp/submit-bar/index",
+    "van-card": "../../miniprogram_npm/vant-weapp/card/index",
+    "van-icon": "../../miniprogram_npm/vant-weapp/icon/index",
+    "van-checkbox": "../../miniprogram_npm/vant-weapp/checkbox/index",
+    "van-checkbox-group": "../../miniprogram_npm/vant-weapp/checkbox-group/index",
+    "van-toast": "../../miniprogram_npm/vant-weapp/toast/index",
+    "van-cell": "../../miniprogram_npm/vant-weapp/cell/index",
+    "van-cell-group": "../../miniprogram_npm/vant-weapp/cell-group/index"
+  }
+}

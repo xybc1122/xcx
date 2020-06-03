@@ -1,7 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const md5 = require('../../utils/md5');
+import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
+import {request} from '../../utils/request'
 Page({
   data: {
     dialogShow: false,
@@ -13,7 +15,22 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     account: "",
     password: "",
-    message:""
+    iconList: [{
+      id:0,
+      icon: 'redpacket_fill',
+      color: 'blue',
+      badge: 120,
+      name: '代付款'
+    }, {
+      id:1,
+      icon: 'squarecheckfill',
+      color: 'blue',
+      badge: 2,
+      name: '已完成'
+    }],
+    gridCol:3,
+    skin: false,
+  
   },
   onLoad: function () {
     //判断是否登录
@@ -77,57 +94,60 @@ Page({
   },
  //处理login的触发事件
   login: function (e) {
-    console.log(this.data.password)
-    if(this.data.account=='1' && this.data.password=='1'){
-      wx.showToast({
-         title: '登陆成功',
-        })
-        wx.setStorageSync('token',  '1')
-        this.setData({
-          hasLogin:true
-        })     
-        //设置缓存
-          return
-    }
-    wx.showToast({
-      title: '登录失败'
-     })
-    // wx.request({
-    //   url: 'http://localhost:8080/API/login',//后面详细介绍
-    //   //定义传到后台的数据
-    //   data: {
-    //     //从全局变量data中获取数据
-    //     account: this.data.account,
-    //     password: this.data.password,
-    //   },
-    //   method: 'get',//定义传到后台接受的是post方法还是get方法
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success: function (res) {
-    //     console.log("调用API成功");
-    //     console.log(res.data.message);
-    //     if (res.data.message=="ok"){
-    //       wx.showToast({
-    //         title: '登陆成功',
-    //       })
-    //     }
-    //     else{
-    //       wx.showModal({
-    //         title: '提示',
-    //         content:'用户名或者密码错误',
-    //         showCancel:false
-    //       })
-    //     }
-    //   },
-    //   fail: function (res) {
-    //     console.log("调用API失败");
-    //   }
-    // })
+    Toast.loading({
+      duration: 0,
+      mask: true,
+      message: '登陆中...'
+    });
+
+    let studentId=this.data.account;
+    
+    let base64 = md5.b64Md5(this.data.password); 
+
+    const pwd= md5.hexMD5(base64 + studentId)
+    
+    setTimeout(()=>{
+      request('/user/wxLogin',{'studentId':studentId,'password':pwd},'POST').
+      then(res=>{
+              const {data:obj}=res
+              if(obj.code===-1){
+                Toast.clear();
+                 wx.showToast({
+                  title: obj.message
+                 })
+                return
+              }
+             const result= obj.data
+             wx.setStorageSync('token',  result.token)
+             wx.setStorageSync('name',  result.name)
+             Toast.clear();
+             wx.showToast({
+                 title: '登陆成功',
+              })
+              this.setData({
+                      hasLogin:true
+                    })     
+      }).catch(err=>{
+        Toast.clear();
+      })
+    },1500)
+  },
+
+  viewOrder(){
+    wx.navigateTo({
+      url: '../order/order-info',
+    }) 
+  },
+  orderInfo(e){
+    let index=e.currentTarget.dataset.index
+    wx.navigateTo({
+      url: '../order/order-info?index='+index
+    })
   },
   //用户授权
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
+    console.log(app.globalData.userInfo)
     if(app.globalData.userInfo){
       this.setData({
         userInfo: e.detail.userInfo,
@@ -155,6 +175,7 @@ tapDialogButton(e) {
  })
  //清理缓存
  wx.removeStorageSync('token')
+ wx.removeStorageSync('name')
   }else{
     this.setData({
       dialogShow: false

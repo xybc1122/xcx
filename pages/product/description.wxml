@@ -1,0 +1,76 @@
+<view class="cu-card">
+
+ <view class="cu-item shadow">
+ <view class="cu-list menu-avatar">
+
+
+<van-card
+  price="{{itemDescription.price}}"
+>
+  <view slot="title">
+  <view  class="title">
+  <view> {{itemDescription.title}}</view>
+  <view><van-icon name="manager" color="#409EFF" /><text style="color:#999">{{itemDescription.teacher}}</text></view>
+  </view>
+  </view>
+  
+ <view slot="desc">
+    <view><text>{{itemDescription.time}}</text></view>
+    <view><text> {{itemDescription.desc}}</text></view>
+    <view><van-icon name="location" color="#409EFF" /><text> {{itemDescription.campus}}</text></view>
+  </view>
+</van-card>
+</view>
+</view>
+</view>
+
+ 
+ 
+
+<view class="cu-card">
+ <view class="cu-item shadow">
+ <view class="cu-list menu-avatar">
+<van-cell-group>
+  <van-cell title="学员信息" value="{{name}}">
+  <view slot="icon" style="margin-top: 6rpx;   margin-right: 20rpx;">
+  <van-icon name="smile" color="#409EFF" />
+  </view>
+  </van-cell>
+</van-cell-group>
+</view>
+</view>
+</view>
+
+
+ 
+ 
+  <van-toast id="van-toast" />
+ 
+ 
+ 
+ 
+ 
+ 
+ <view class="cu-card"  style="position:fixed;bottom:0; width:100%">
+
+ <view class="cu-item-bar">
+ <view class="cu-list menu-avatar">
+
+  <view class="checked-element">
+  <van-checkbox value="{{ checked }}" bind:change="onChange" class="checked-item">我已经阅读并同意相关</van-checkbox>
+  <view style="margin-left: 20rpx;margin-top: 10rpx;" bindtap="onClickShow"><text style="color:red;">报名须知</text></view>
+  </view>
+  
+
+  <view class="click-item">
+  <view><text>应付: </text><text class="text-price text-red">{{itemDescription.price}}</text></view>
+  <view>
+    <button class="cu-btn bg-red round shadow-blur" bindtap="pay">立即订购</button>
+  </view>
+  </view>
+
+
+  </view>
+  </view>
+   </view>
+  

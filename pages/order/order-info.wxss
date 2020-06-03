@@ -1,0 +1,12 @@
+/* pages/order/order-info.wxss */
+
+.text-color{
+    color:#999999
+}
+
+
+.title{
+ display: flex;
+ justify-content: space-between;
+}
+

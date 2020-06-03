@@ -1,6 +1,9 @@
 {
   "usingComponents": {
     "mp-dialog": "weui-miniprogram/dialog/dialog",
-    "van-button": "../../miniprogram_npm/vant-weapp/button"
+    "van-button": "../../miniprogram_npm/vant-weapp/button/index",
+    "van-cell": "../../miniprogram_npm/vant-weapp/cell/index",
+    "van-cell-group": "../../miniprogram_npm/vant-weapp/cell-group/index",
+    "van-toast": "../../miniprogram_npm/vant-weapp/toast/index"
   }
 }

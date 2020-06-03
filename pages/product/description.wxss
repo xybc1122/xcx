@@ -1,0 +1,39 @@
+/* pages/product/description.wxss */
+
+@import "../order/order-info.wxss";
+
+.cu-item-bar{
+    display: block;
+    background-color: var(--white);
+    overflow: hidden
+}
+
+.checked-element{
+    display: flex;
+    align-items: center;
+}
+
+
+.checked-item{
+margin-left: 20rpx;
+margin-top: 10rpx;
+}
+
+
+.click-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ }
+
+
+ .click-item view:nth-child(1){
+    margin-left: 20rpx;
+ }
+
+ 
+ .click-item view:nth-child(2){
+    margin-bottom: 35rpx;
+    margin-right: 20rpx;
+
+ }
