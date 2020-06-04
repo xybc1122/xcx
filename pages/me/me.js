@@ -93,44 +93,43 @@ Page({
   })
   },
  //处理login的触发事件
-  login: function (e) {
-    Toast.loading({
-      duration: 0,
-      mask: true,
-      message: '登陆中...'
-    });
+  login (e) {
 
-    let studentId=this.data.account;
+    let userName=this.data.account;
     
     let base64 = md5.b64Md5(this.data.password); 
 
-    const pwd= md5.hexMD5(base64 + studentId)
+    const pwd= md5.hexMD5(base64 + userName)
     
-    setTimeout(()=>{
-      request('/user/wxLogin',{'studentId':studentId,'password':pwd},'POST').
+    // console.log(pwd)
+    
+      request('/user/wxLogin',{'userName':userName,'password':pwd},'POST').
       then(res=>{
               const {data:obj}=res
               if(obj.code===-1){
                 Toast.clear();
                  wx.showToast({
-                  title: obj.message
+                  title: obj.message,
+                  image: '../icons/error.png'
                  })
                 return
               }
              const result= obj.data
              wx.setStorageSync('token',  result.token)
              wx.setStorageSync('name',  result.name)
-             Toast.clear();
              wx.showToast({
                  title: '登陆成功',
               })
               this.setData({
                       hasLogin:true
-                    })     
+                  })     
       }).catch(err=>{
-        Toast.clear();
+        wx.showToast({
+          title: '网络异常',
+          image: '../icons/error.png'
+         }) 
       })
-    },1500)
+   
   },
 
   viewOrder(){
@@ -147,7 +146,6 @@ Page({
   //用户授权
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
-    console.log(app.globalData.userInfo)
     if(app.globalData.userInfo){
       this.setData({
         userInfo: e.detail.userInfo,
@@ -164,7 +162,7 @@ Page({
 },
 
 tapDialogButton(e) {
-  var index = e.detail.index
+  let index = e.detail.index
   //0是取消
   if(index==1){
     this.setData({
@@ -173,9 +171,9 @@ tapDialogButton(e) {
       account: "",
       password: ""
  })
- //清理缓存
- wx.removeStorageSync('token')
- wx.removeStorageSync('name')
+  //清理缓存
+  wx.removeStorageSync('token')
+  wx.removeStorageSync('name')
   }else{
     this.setData({
       dialogShow: false

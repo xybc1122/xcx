@@ -4,8 +4,6 @@
  
   </view>
 
-<van-toast id="van-toast" />
-
 	<!--主体-->
 <view class="container" wx:if="{{!hasLogin}}">
 

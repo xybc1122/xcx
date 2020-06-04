@@ -4,10 +4,17 @@
  <view style="margin: 30rpx;" wx:if="{{isLoginType===1}}">
   <van-button  color="#fff" size="large"  round type="primary" bindtap="bindViewLogin"  class="container"><text style="color:#303960">点击跳转登陆页面</text></van-button>
 </view>
-
-
-
 <view wx:elif="{{isLoginType===2}}">
+
+  <van-toast id="van-toast" />
+
+
+
+  <view  class="wrapper" hidden="{{courseList.length!=0}}">
+   <view><text class="no_data"> 暂无数据</text></view>
+  </view>
+
+
 <view class="cu-card"  wx:for="{{courseList}}" wx:for-index="id" wx:for-item="item" wx:key="key">
 
  <view class="cu-item shadow">
@@ -15,23 +22,23 @@
 
 
 <van-card
-  price="{{item.price}}"
-  thumb="{{item.imgUrl}}"
+  price="{{item.coursePrice}}"
+  thumb="{{item.courseUrl}}"
 >
   <view slot="title">
   <view  class="title">
-  <view> {{item.title}}</view>
-  <view><van-icon name="manager" color="#409EFF" /><text style="color:#999">{{item.teacher}}</text></view>
+  <view> {{item.courseTitle}}</view>
+  <view><van-icon name="manager" color="#409EFF" /><text style="color:#999">{{item.courseTeacher}}</text></view>
   </view>
   </view>
   
  <view slot="desc">
-    <view><text>{{item.time}}</text></view>
-    <view><text> {{item.desc}}</text></view>
-    <view><van-icon name="location" color="#409EFF" /><text> {{item.campus}}</text></view>
+    <view><text>{{item.courseStartTime}}--{{item.courseEndTime}}</text></view>
+    <view><text> {{item.courseDesc}}</text></view>
+    <view><van-icon name="location" color="#409EFF" /><text> {{item.courseCampus}}</text></view>
   </view>
   <view slot="footer">
-    <van-button size="small" type="info" bindtap="desPay" data-item="{{item}}" wx:if="{{item.full===0}}">加入报班</van-button>
+    <van-button size="small" type="info" bindtap="desPay" data-item="{{item}}" wx:if="{{item.courseFull===0}}">加入报班</van-button>
     <van-button size="small" type="danger" wx:else>已报满</van-button>
   </view>
 </van-card>
