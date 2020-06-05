@@ -9,32 +9,19 @@ Page({
     dialogShow: false,
     buttons: [{text: '取消'}, {text: '确定'}],
     oneButton: [{text: '确定'}],
-    userInfo: {},
-    hasLogin:false,
-    hasUserInfo: false,
+    userInfo: {},//用户信息
+    hasLogin:false,//判断是否登录
+    hasUserInfo: false,//判断是否用户授权
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    account: "",
-    password: "",
-    iconList: [{
-      id:0,
-      icon: 'redpacket_fill',
-      color: 'blue',
-      badge: 120,
-      name: '代付款'
-    }, {
-      id:1,
-      icon: 'squarecheckfill',
-      color: 'blue',
-      badge: 2,
-      name: '已完成'
-    }],
-    gridCol:3,
-    skin: false,
+    account: "", //账号
+    password: "",//密码
+    iconList: [],
+    gridCol:3
   
   },
   onLoad: function () {
     //判断是否登录
-   var token= wx.getStorageSync('token')
+   const token= wx.getStorageSync('token')
     if(token){
       this.setData({
         hasLogin:true
@@ -70,6 +57,53 @@ Page({
         }
       })
     }
+  },
+  onShow(){
+    const token= wx.getStorageSync('token')
+    if(!token){
+        return
+    }
+    this.getPayCount()
+  },
+
+  getPayCount(){
+    request('/order/course-order/payCount').then(res=>{
+     
+      const {data:obj} =res
+      console.log(obj)
+      if(obj.code===200){
+        const countList=  obj.data.split("#")
+
+        const notPay = {
+          id:0,
+          icon: 'redpacket_fill',
+          color: 'blue',
+          badge: countList[1],
+          name: '代付款'
+        }
+        const pay= {
+          id:1,
+          icon: 'squarecheckfill',
+          color: 'blue',
+          badge: countList[0],
+          name: '已完成'
+        }
+
+        const icons =[]
+        icons.push(notPay)
+        icons.push(pay)
+        this.setData({
+          iconList:icons
+        })
+      }
+     
+    }).catch(err=>{
+      console.log(err)
+      wx.showToast({
+        title: '网络异常',
+        image: '../icons/error.png'
+       }) 
+    })
   },
   //处理accountInput的触发事件
   accountInput:function(e){
@@ -117,6 +151,7 @@ Page({
              const result= obj.data
              wx.setStorageSync('token',  result.token)
              wx.setStorageSync('name',  result.name)
+             this.getPayCount()
              wx.showToast({
                  title: '登陆成功',
               })

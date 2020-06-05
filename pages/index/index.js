@@ -35,6 +35,7 @@ Page({
       wx.stopPullDownRefresh()
       wx.showToast({
         title: '请先登录',
+        image: '../icons/log-in.png',
       })
         return
     }
@@ -64,7 +65,6 @@ Page({
   getCourseList(){
     request('/course/list',{'current':this.data.current,'offset':this.data.offset}).then(res=>{
       const {data:obj}=res
-      console.log(obj)
       if(obj.code===200){
         this.setData({
           courseList:[...this.data.courseList,...obj.data.records],

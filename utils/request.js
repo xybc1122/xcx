@@ -2,7 +2,7 @@
 export const request=(url,data,method='GET',header={})=>{
     const token =wx.getStorageSync('token')
     header.token =token
-    // console.log(token)
+    console.log(token)
     wx.showLoading({
         title: '加载中',
       })

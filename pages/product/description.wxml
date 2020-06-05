@@ -5,19 +5,19 @@
 
 
 <van-card
-  price="{{itemDescription.price}}"
+  price="{{itemDescription.coursePrice}}"
 >
   <view slot="title">
   <view  class="title">
-  <view> {{itemDescription.title}}</view>
-  <view><van-icon name="manager" color="#409EFF" /><text style="color:#999">{{itemDescription.teacher}}</text></view>
+  <view> {{itemDescription.courseTitle}}</view>
+  <view><van-icon name="manager" color="#409EFF" /><text style="color:#999">{{itemDescription.courseTeacher}}</text></view>
   </view>
   </view>
   
  <view slot="desc">
-    <view><text>{{itemDescription.time}}</text></view>
-    <view><text> {{itemDescription.desc}}</text></view>
-    <view><van-icon name="location" color="#409EFF" /><text> {{itemDescription.campus}}</text></view>
+    <view><text>{{itemDescription.courseStartTime}}--{{itemDescription.courseEndTime}}</text></view>
+    <view><text> {{itemDescription.courseDesc}}</text></view>
+    <view><van-icon name="location" color="#409EFF" /><text> {{itemDescription.courseCampus}}</text></view>
   </view>
 </van-card>
 </view>
@@ -63,7 +63,7 @@
   
 
   <view class="click-item">
-  <view><text>应付: </text><text class="text-price text-red">{{itemDescription.price}}</text></view>
+  <view><text>应付: </text><text class="text-price text-red">{{itemDescription.coursePrice}}</text></view>
   <view>
     <button class="cu-btn bg-red round shadow-blur" bindtap="pay">立即订购</button>
   </view>

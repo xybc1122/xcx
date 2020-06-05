@@ -38,7 +38,7 @@
       <view  wx:if="{{!hasUserInfo && canIUse}}" >
    <button class="cu-btn icon" open-type="getUserInfo"
     bindgetuserinfo="getUserInfo">
-    <text class="cuIcon-emoji"></text>
+    <text class="cuIcon-emoji  text-blue"></text>
   </button>
    <text style=" padding-left: 10rpx;">点击头像展示更多</text>
       </view>
@@ -57,7 +57,7 @@
 
   <view class="cu-bar bg-white solid-bottom margin-top border_margin_top">
     <view class="action">
-      <text class="cuIcon-title text-orange "></text> 我的订单
+      <text class="cuIcon-emojifill text-blue"></text> 我的订单
     </view>
     <view class="action">
       <button class="cu-btn bg-blue shadow" bindtap="viewOrder">查看</button>
@@ -68,7 +68,7 @@
     <view bindtap="orderInfo" data-index="{{item.id}}">
       <view class="cuIcon-{{item.icon}} text-{{item.color}}">
         <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
-          <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+          <block>{{item.badge>99?"99+":item.badge}}</block>
         </view>
       </view>
       <text>{{item.name}}</text>  

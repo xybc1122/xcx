@@ -994,7 +994,7 @@
 }
 
 .cuIcon-title:before {
-	content: "\e82f";
+	content: "\e673";
 }
 
 .cuIcon-recordfill:before {
