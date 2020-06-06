@@ -1,11 +1,12 @@
-<van-tabs active="{{ active }}" bind:change="onChange">
+
+  <van-tabs active="{{ active }}" bind:change="onChange">
   <van-tab title="代付款">
   <view class="cu-card"  wx:for="{{prePaymentList}}" wx:for-index="id" wx:for-item="item" wx:key="key">
  <view class="cu-item shadow">
  <view class="cu-list menu-avatar">
 
 <van-card
-  thumb="{{item.imgUrl}}"
+  thumb="{{item.url}}"
 >
   <view slot="title">
   <view  class="title">
@@ -17,7 +18,7 @@
 <view slot="desc">
 <view style=" margin-top: 45rpx;">
  <view><text class="text-color">总价: ¥{{item.price}}</text></view>
- <view><text class="text-color">下单时间: {{item.paTime}}</text></view>
+ <view><text class="text-color">下单时间: {{item.createTime}}</text></view>
 </view>
 </view>
 
@@ -44,7 +45,7 @@
  <view class="cu-list menu-avatar">
 
 <van-card
- thumb="{{item.imgUrl}}"
+ thumb="{{item.url}}"
 >
 <view slot="title">
   <view  class="title">
@@ -57,7 +58,7 @@
 <view slot="desc">
 <view style=" margin-top: 45rpx;">
  <view><text class="text-color">总价: ¥{{item.price}}</text></view>
- <view><text class="text-color">下单时间: {{item.paTime}}</text></view>
+ <view><text class="text-color">下单时间: {{item.createTime}}</text></view>
 </view>
 </view>
 </van-card>

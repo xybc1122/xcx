@@ -46,6 +46,7 @@ Page({
     })
     this.getCourseList()
   },
+  
   onReachBottom(){
   let current=  this.data.current
   let page=this.data.pages
@@ -66,10 +67,17 @@ Page({
     request('/course/list',{'current':this.data.current,'offset':this.data.offset}).then(res=>{
       const {data:obj}=res
       if(obj.code===200){
-        this.setData({
-          courseList:[...this.data.courseList,...obj.data.records],
-          pages:obj.data.pages
-        })
+        if(obj.data.records.length >0){
+          this.setData({
+            courseList:[...this.data.courseList,...obj.data.records],
+            pages:obj.data.pages
+          })
+        }else{
+          this.setData({
+            courseList:obj.data.records
+          })
+        }
+        
       }
       wx.stopPullDownRefresh()
   }).catch(err=>{

@@ -98,7 +98,6 @@ Page({
       }
      
     }).catch(err=>{
-      console.log(err)
       wx.showToast({
         title: '网络异常',
         image: '../icons/error.png'
