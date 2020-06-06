@@ -1,4 +1,4 @@
- const baseUrl ='http://127.0.0.1:8080/v1/api'
+ const baseUrl ='http://192.168.2.114:8080/v1/api'
 export const request=(url,data,method='GET',header={})=>{
     const token =wx.getStorageSync('token')
     header.token =token

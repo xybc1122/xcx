@@ -15,7 +15,22 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     account: "", //账号
     password: "",//密码
-    iconList: [],
+    iconList: [
+      {
+        id:0,
+        icon: 'redpacket_fill',
+        color: 'blue',
+        badge: 0,
+        name: '代付款'
+      },
+      {
+        id:1,
+        icon: 'squarecheckfill',
+        color: 'blue',
+        badge: 0,
+        name: '已完成'
+      }
+    ],
     gridCol:3
   
   },
@@ -168,13 +183,13 @@ Page({
 
   viewOrder(){
     wx.navigateTo({
-      url: '../order/order-info',
+      url: '../order/info',
     }) 
   },
   orderInfo(e){
     let index=e.currentTarget.dataset.index
     wx.navigateTo({
-      url: '../order/order-info?index='+index
+      url: '../order/info?index='+index
     })
   },
   //用户授权

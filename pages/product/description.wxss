@@ -1,6 +1,6 @@
 /* pages/product/description.wxss */
 
-@import "../order/order-info.wxss";
+@import "../order/info.wxss";
 
 .cu-item-bar{
     display: block;

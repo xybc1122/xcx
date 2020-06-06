@@ -12,7 +12,8 @@ Page({
     ],
     current:1,
     offset:5,
-    pages:0
+    pages:0,
+    isListNull:false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -22,6 +23,7 @@ Page({
     //如果是空对象 说明是点查看进来的
    let index= options.index
     if(index==null){
+      that.getOrderInfo()
       return
     }
     that.setData({
@@ -30,13 +32,24 @@ Page({
     that.getOrderInfo()
   },
   getOrderInfo(){
+    this.setData({
+      isListNull:true
+    })
     request('/order/course-order/orderList', {'isPay':this.data.active,'current':this.data.current,'offset':this.data.offset}).then(res=>{
         const {data:obj} =res
         if(obj.code===200){
-          this.setData({
-            prePaymentList:obj.data.records,
-            pages:obj.data.pages
-          })
+          if(obj.data.records.length >0){
+            this.setData({
+              prePaymentList:[...this.data.prePaymentList,...obj.data.records],
+              pages:obj.data.pages
+            })
+          }else{
+            this.setData({
+              prePaymentList:obj.data.records,
+              isListNull:false
+            })
+          }
+         
         }
         wx.stopPullDownRefresh()
       }).catch(err=>{
@@ -96,14 +109,32 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+   this.setData({
+      current:1,
+      offset:5,
+      prePaymentList:[]
+    })
+    this.getOrderInfo()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    let current=  this.data.current
+    let page=this.data.pages
+      if(current>=page){
+        wx.showToast({
+          title: '已经到底啦',
+          image: '../icons/index.png',
+        }) 
+        return
+      }
+      current++;
+      this.setData({
+        current:current
+      })
+      this.getOrderInfo()
   },
 
   /**
@@ -117,9 +148,5 @@ Page({
       active:event.detail.index
     })
     this.getOrderInfo()
-  },
-
-  onScroll(e){
-    console.log("onScroll")
   }
 })

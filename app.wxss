@@ -16,4 +16,19 @@
   margin: 20rpx;
 }
 
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.wrapper view {
+  margin-top: 50%;
+}
+
+.no_data {
+  color: #999;
+}
+
+
 

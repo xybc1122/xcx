@@ -1,4 +1,4 @@
-@import "../order/order-info.wxss";
+@import "../order/info.wxss";
 
 .footer_item{
     display: flex;
@@ -12,7 +12,7 @@
     height: 100%;
 }
 .wrapper view {
-    margin-top: 50%;
+    margin: 0,auto;
 }
 
 .no_data {

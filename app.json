@@ -3,8 +3,8 @@
     "pages/index/index",
     "pages/me/me",
     "pages/product/description",
-    "pages/order/order-info",
-    "pages/text/read-text"
+    "pages/text/read-text",
+    "pages/order/info"
   ],
   "useExtendedLib": {
     "weui": true

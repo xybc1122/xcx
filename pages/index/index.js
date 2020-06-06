@@ -9,7 +9,8 @@ Page({
     current:1,
     offset:10,
     pages:0,
-    isLoginType:0 //1登陆
+    isLoginType:0, //1登陆
+    isListNull:false //判断是否有数据
   },
   onShow() {
     const token= wx.getStorageSync('token')
@@ -22,11 +23,10 @@ Page({
     }
     this.setData({
         //index
-      isLoginType:2
+      isLoginType:2,
+      courseList:[]
     })
     this.getCourseList()
-
-
   },
   //上啦触发刷新
   onPullDownRefresh(){
@@ -42,7 +42,8 @@ Page({
 
     this.setData({
       current:1,
-      offset:10
+      offset:10,
+      courseList:[]
     })
     this.getCourseList()
   },
@@ -64,6 +65,9 @@ Page({
     this.getCourseList()
   },
   getCourseList(){
+    this.setData({
+      isListNull:true
+    })
     request('/course/list',{'current':this.data.current,'offset':this.data.offset}).then(res=>{
       const {data:obj}=res
       if(obj.code===200){
@@ -74,7 +78,8 @@ Page({
           })
         }else{
           this.setData({
-            courseList:obj.data.records
+            courseList:obj.data.records,
+            isListNull:false
           })
         }
         

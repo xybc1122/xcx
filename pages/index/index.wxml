@@ -10,8 +10,8 @@
 
 
 
-  <view  class="wrapper" hidden="{{courseList.length!=0}}">
-   <view><text class="no_data"> 暂无数据</text></view>
+  <view  class="wrapper" hidden="{{isListNull}}">
+   <view><text class="no_data">暂无数据</text></view>
   </view>
 
 
