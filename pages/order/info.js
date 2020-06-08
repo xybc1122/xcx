@@ -8,10 +8,9 @@ Page({
   data: {
     active: 0,
     prePaymentList:[
-  
     ],
     current:1,
-    offset:5,
+    offset:10,
     pages:0,
     isListNull:false
   },
@@ -19,6 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("onLoad")
     let that =this
     //如果是空对象 说明是点查看进来的
    let index= options.index
@@ -54,7 +54,7 @@ Page({
         wx.stopPullDownRefresh()
       }).catch(err=>{
       wx.showToast({
-        title: '网络异常',
+        title: '获得订单信息网络异常',
         image: '../icons/error.png'
        }) 
        wx.stopPullDownRefresh()
@@ -88,7 +88,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getOrderInfo()
   },
 
   /**
@@ -111,7 +110,7 @@ Page({
   onPullDownRefresh: function () {
    this.setData({
       current:1,
-      offset:5,
+      offset:10,
       prePaymentList:[]
     })
     this.getOrderInfo()
@@ -145,7 +144,10 @@ Page({
   },
   onChange(event) {
     this.setData({
-      active:event.detail.index
+       current:1,
+       offset:10,
+      active:event.detail.index,
+      prePaymentList:[]
     })
     this.getOrderInfo()
   }

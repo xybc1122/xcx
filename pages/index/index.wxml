@@ -2,7 +2,7 @@
 <view class="page__bd">
 
  <view style="margin: 30rpx;" wx:if="{{isLoginType===1}}">
-  <van-button  color="#fff" size="large"  round type="primary" bindtap="bindViewLogin"  class="container"><text style="color:#303960">点击跳转登陆页面</text></van-button>
+  <van-button icon="good-job" color="#409EFF" size="large"  round type="primary" bindtap="bindViewLogin"  class="container">点击报名</van-button>
 </view>
 <view wx:elif="{{isLoginType===2}}">
 

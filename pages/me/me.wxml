@@ -36,9 +36,9 @@
       <view class="cu-item">
       
       <view  wx:if="{{!hasUserInfo && canIUse}}" >
-   <button class="cu-btn icon" open-type="getUserInfo"
+   <button class="cu-btn icon bcolor" open-type="getUserInfo"
     bindgetuserinfo="getUserInfo">
-    <text class="cuIcon-emoji  text-blue"></text>
+    <text class="cuIcon-friendaddfill  text-white"></text>
   </button>
    <text style=" padding-left: 10rpx;">点击头像展示更多</text>
       </view>

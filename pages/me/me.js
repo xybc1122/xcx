@@ -3,7 +3,7 @@
 const app = getApp()
 const md5 = require('../../utils/md5');
 import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
-import {request} from '../../utils/request'
+import {request,requestWx} from '../../utils/request'
 Page({
   data: {
     dialogShow: false,
@@ -149,8 +149,6 @@ Page({
 
     const pwd= md5.hexMD5(base64 + userName)
     
-    // console.log(pwd)
-    
       request('/user/wxLogin',{'userName':userName,'password':pwd},'POST').
       then(res=>{
               const {data:obj}=res
@@ -165,22 +163,43 @@ Page({
              const result= obj.data
              wx.setStorageSync('token',  result.token)
              wx.setStorageSync('name',  result.name)
+             this.getOpenId()
              this.getPayCount()
              wx.showToast({
                  title: '登陆成功',
               })
               this.setData({
-                      hasLogin:true
-                  })     
+                hasLogin:true
+              })     
       }).catch(err=>{
         wx.showToast({
-          title: '网络异常',
+          title: '登陆网络异常',
           image: '../icons/error.png'
          }) 
       })
-   
   },
+  getOpenId(){
+    wx.login({
+      success: (res) => {
+        if (res.code) {
+          const data= {'appid':"wxc501def26cdf4716",'secret':"55bfa60041f88e360d826e160b8a3420",'grant_type':'authorization_code',js_code:res.code}
+          requestWx('https://api.weixin.qq.com/sns/jscode2session',data).then(res=>{
+            const {data:obj}=res
+            wx.setStorageSync('openid',  obj.openid)
+            wx.setStorageSync('sessionKey',  obj.session_key)
+            if (obj.openid == null || obj.openid == undefined) {
+              wx.showToast({
+                title: 'openid获取失败',
+             })
+             return
+            }
+            console.log(obj.openid)         
+          })
+        }
 
+      }
+    })
+  },
   viewOrder(){
     wx.navigateTo({
       url: '../order/info',
@@ -192,6 +211,7 @@ Page({
       url: '../order/info?index='+index
     })
   },
+
   //用户授权
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

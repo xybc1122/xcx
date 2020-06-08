@@ -24,7 +24,9 @@ Page({
     this.setData({
         //index
       isLoginType:2,
-      courseList:[]
+      courseList:[],
+      current:1,
+      offset:10
     })
     this.getCourseList()
   },
@@ -88,7 +90,7 @@ Page({
   }).catch(err=>{
     wx.stopPullDownRefresh()
     wx.showToast({
-      title: '网络异常',
+      title: '获取课程列表网络异常',
       image: '../icons/error.png'
      })
   })
