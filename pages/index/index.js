@@ -105,7 +105,7 @@ Page({
   desPay(e){
     let item=JSON.stringify(e.currentTarget.dataset['item']);
     wx.navigateTo({
-      url: '../product/description?item=' + item,
+      url: '../product/description?item=' + item
     })
   }
 })

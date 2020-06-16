@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-const md5 = require('../../utils/md5');
+const base64 = require('../../utils/base64');
 import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
 import {request,requestWx} from '../../utils/request'
 Page({
@@ -142,14 +142,8 @@ Page({
   },
  //处理login的触发事件
   login (e) {
-
-    let userName=this.data.account;
-    
-    let base64 = md5.b64Md5(this.data.password); 
-
-    const pwd= md5.hexMD5(base64 + userName)
-    
-      request('/user/wxLogin',{'userName':userName,'password':pwd},'POST').
+      const base64Pwd= base64.Base64.encode(this.data.password)
+      request('/user/wxLogin',{'userName':this.data.account,'password':base64Pwd},'POST').
       then(res=>{
               const {data:obj}=res
               if(obj.code===-1){
@@ -193,7 +187,7 @@ Page({
              })
              return
             }
-            console.log(obj.openid)         
+            // console.log(obj.openid)         
           })
         }
 
