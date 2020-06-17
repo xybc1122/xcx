@@ -8,7 +8,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
+  padding-top: 200rpx;
+  padding-bottom: 35rpx;
   box-sizing: border-box;
 } 
 

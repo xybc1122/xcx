@@ -63,3 +63,7 @@
 .bcolor{
   background-color: #409EFF !important;
 }
+
+.resetPwd{
+margin-left: 20px;
+}

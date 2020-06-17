@@ -2,7 +2,6 @@
 export const request=(url,data,method='GET',header={})=>{
     const token =wx.getStorageSync('token')
     header.token =token
-    console.log(token)
     wx.showLoading({
         title: '加载中',
       })
@@ -25,7 +24,13 @@ export const request=(url,data,method='GET',header={})=>{
 }
 
 
-
+/**
+ * 请求微信本地的接口
+ * @param {*} url 
+ * @param {*} data 
+ * @param {*} method 
+ * @param {*} header 
+ */
 export const requestWx=(url,data,method='GET',header={})=>{
     wx.showLoading({
         title: '加载中',

@@ -5,9 +5,9 @@
   </view>
 
 	<!--主体-->
-<view class="container" wx:if="{{!hasLogin}}">
-
-  <view class="account">
+<view wx:if="{{!hasLogin}}">
+  <view  class="container" >
+    <view class="account">
     <view class="title">账号</view>
     <view class="num"><input bindinput="accountInput" placeholder="请输入用户名" placeholder-style="color:#999;"/></view>
   </view>
@@ -23,9 +23,10 @@
   <view class="hr"></view>
 
   <van-button class="btn" type="info" bindtap='login' size="large">登陆</van-button>
-
   <view bindtap="bindViewTap">
-</view>
+  </view>
+  </view>
+<van-button color="#f1f1f1" size="small" class="resetPwd"  bindtap='reset'><text style="color:#409EFF;font-weight: bold;">修改密码</text></van-button>
 </view>
  
 

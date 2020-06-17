@@ -2,8 +2,8 @@
 //获取应用实例
 const app = getApp()
 const base64 = require('../../utils/base64');
-import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
 import {request,requestWx} from '../../utils/request'
+import {checkAccount,checkPwd} from '../../utils/check'
 Page({
   data: {
     dialogShow: false,
@@ -134,20 +134,32 @@ Page({
         this.setData({ password: pwd });//把获取到的密码赋值给全局变量Date中的password
       }
     },
+    
   //事件处理函数
   bindViewTap: function() {
     this.setData({
       dialogShow: true
   })
   },
+  reset(){
+    wx.navigateTo({
+      url: '../reset/reset-pwd',
+    }) 
+  },
  //处理login的触发事件
   login (e) {
-      const base64Pwd= base64.Base64.encode(this.data.password)
-      request('/user/wxLogin',{'userName':this.data.account,'password':base64Pwd},'POST').
+      const that = this
+      if(!checkAccount(that.data.account)){
+        return
+      }
+      if(!checkPwd(that.data.password,"密码不规范")){
+        return
+      }
+      const base64Pwd= base64.Base64.encode(that.data.password)
+      request('/user/wxLogin',{'userName':that.data.account,'password':base64Pwd},'POST').
       then(res=>{
               const {data:obj}=res
               if(obj.code===-1){
-                Toast.clear();
                  wx.showToast({
                   title: obj.message,
                   image: '../icons/error.png'
@@ -157,8 +169,8 @@ Page({
              const result= obj.data
              wx.setStorageSync('token',  result.token)
              wx.setStorageSync('name',  result.name)
-             this.getOpenId()
-             this.getPayCount()
+             that.getOpenId()
+             that.getPayCount()
              wx.showToast({
                  title: '登陆成功',
               })

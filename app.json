@@ -4,7 +4,8 @@
     "pages/me/me",
     "pages/product/description",
     "pages/text/read-text",
-    "pages/order/info"
+    "pages/order/info",
+    "pages/reset/reset-pwd"
   ],
   "useExtendedLib": {
     "weui": true

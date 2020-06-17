@@ -1,0 +1,32 @@
+	<!--主体-->
+  <view  class="container" >
+    <view class="account">
+    <view class="title">账号</view>
+    <view class="num"><input bindinput="accountInput" placeholder="请输入用户名" placeholder-style="color:#999;"/></view>
+  </view>
+
+   <view class="hr"></view>
+
+   <view class="account">
+    <view class="title">原密码</view>
+    <view class="num"><input bindinput="oldePwdInput" placeholder="请输入原密码" password placeholder-style="color:#999;"/></view>
+  </view>
+  
+  <view class="hr"></view>
+  
+   <view class="account">
+    <view class="title">新密码</view>
+    <view class="num"><input bindinput="newPwdInput" placeholder="请输入新密码" password placeholder-style="color:#999;"/></view>
+  </view>
+  
+  <view class="hr"></view>
+
+     <view class="account">
+    <view class="title">确认密码</view>
+    <view class="num"><input bindinput="confirmPwdInput" placeholder="请输入确认密码" password placeholder-style="color:#999;"/></view>
+  </view>
+  
+  <view class="hr"></view>
+
+  <van-button class="btn" type="info" bindtap='restPwd' size="large">确定</van-button>
+  </view>
