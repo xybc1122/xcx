@@ -1,3 +1,4 @@
+ <van-dialog id="van-dialog" />
  <van-tabs active="{{ active }}" bind:change="onChange">
   <van-tab title="代付款">
     <view  class="wrapper" hidden="{{isListNull}}">
@@ -9,7 +10,7 @@
  <view class="cu-list menu-avatar">
 
 <van-card
-  thumb="{{item.url}}"
+  thumb="{{item.courseUrl}}"
 >
   <view slot="title">
   <view  class="title">
@@ -26,7 +27,8 @@
 </view>
 
   <view slot="footer">
-    <van-button size="small" round plain type="info" bind:click="desPay" data-item="{{item}}">去支付</van-button>   
+    <van-button size="small" round plain type="info" data-item="{{item}}">去支付</van-button>   
+    <van-button size="small" round plain type="info" bind:click="delOrder" data-orderNumber="{{item.orderNumber}}" style=" margin-left: 10rpx;">删除订单</van-button>   
   </view>
 </van-card>
 
@@ -52,7 +54,7 @@
  <view class="cu-list menu-avatar">
 
 <van-card
- thumb="{{item.url}}"
+ thumb="{{item.courseUrl}}"
 >
 <view slot="title">
   <view  class="title">

@@ -1,5 +1,6 @@
 // pages/order/order-info.js
 import {request} from '../../utils/request'
+import Dialog from '../../miniprogram_npm/vant-weapp/dialog/dialog';
 Page({
 
   /**
@@ -18,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("onLoad")
     let that =this
     //如果是空对象 说明是点查看进来的
    let index= options.index
@@ -30,6 +30,40 @@ Page({
       active: index
     })
     that.getOrderInfo()
+  },
+  delOrder(e){
+    Dialog.confirm({
+      title: '提示',
+      message: '确定删除订单吗?',
+    })
+      .then(() => {
+        const orderNumber= e.currentTarget.dataset.ordernumber
+        request('/order/course-order/delOrder',{orderNumber:orderNumber}).then(res=>{
+         const {data:obj} =res
+         if(obj.code===200){
+           wx.showToast({title: obj.message})
+           this.setData({
+             current:1,
+             offset:10,
+             prePaymentList:[]
+          })
+           this.getOrderInfo()
+           return 
+         }
+         wx.showToast({
+           title: obj.message,
+           image: '../icons/error.png'
+          })
+        }).catch(err=>{
+           wx.showToast({
+             title: '删除订单网络异常',
+             image: '../icons/error.png'
+            }) 
+         })
+      })
+      .catch(() => {
+        // on cancel
+      });
   },
   getOrderInfo(){
     this.setData({

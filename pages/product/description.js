@@ -1,4 +1,5 @@
 import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
+import {request} from '../../utils/request'
 Page({
 
   /**
@@ -90,13 +91,28 @@ Page({
   Toast.loading({
     duration: 0,
     mask: true,
-    message: '支付中...',
+    message: '提交订单...',
   });
-
   setTimeout(()=>{
     Toast.clear();
-  },3000)
-  console.log(this.data.itemDescription)
+    request('/addCourseOrder',{courseId:this.data.itemDescription.courseId,openId:wx.getStorageSync('openid')}).then(res=>{
+      const {data:obj}=res
+      if(obj.code===-1){
+        wx.showToast({
+          title: obj.message,
+          image: '../icons/error.png'
+         })
+         return
+      }
+      wx.showToast({title: obj.message })
+      setTimeout(()=>{
+  //返回上一页
+    wx.navigateBack()
+      },200)
+   }).catch(err =>{
+   })
+  },1000)
+
   }
 
 })
