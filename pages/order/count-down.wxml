@@ -1,0 +1,37 @@
+ <view class="cu-card">
+  <view class="cu-item shadow">
+    <view class="cu-list menu-avatar">
+      
+ <van-dialog id="van-dialog" />
+
+ <view>
+   <view class="solids-bottom padding-xs flex align-center">
+    <view class="flex-sub text-center">
+      <view class="solid-bottom text-df padding">{{isTimeOut?'代付款':'订单已关闭'}}</view>
+    </view>
+  </view>
+ <view wx:if="{{isTimeOut}}" style="padding: 10rpx;" class="solid-bottom text-df padding">
+  <view >订单号: {{item.orderNumber}}</view>
+    <view >金额: {{item.price}}</view>
+    <view >下单时间: {{createTime}}</view>
+    <van-count-down time="{{ time }}"
+   format="请在HH:mm:ss内完成订单支付,超时订单将自动关闭"
+   bind:finish="finished"
+   />
+ </view>
+ </view>
+
+      
+  </view>
+ 
+  </view>
+      
+    </view>
+ 
+
+   <view wx:if="{{isTimeOut}}" class="classPay">
+  <van-button size="small" plain type="info" bind:click="delOrder" style=" margin-left: 10rpx;">取消订单</van-button> 
+ 
+  <van-button size="small" plain type="info" >立即支付</van-button>     
+ </view>
+  

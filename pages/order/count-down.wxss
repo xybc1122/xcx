@@ -1,0 +1,8 @@
+/* pages/order/count-down.wxss */
+
+.classPay{
+   margin-top: 5rpx;
+}
+.classPay van-button{
+  padding: 10rpx;
+}

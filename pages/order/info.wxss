@@ -7,3 +7,12 @@
  display: flex;
  justify-content: space-between;
 }
+
+.cardBottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   padding-left: 20rpx;
+   padding-right: 20rpx;
+   padding-bottom: 30rpx;
+}

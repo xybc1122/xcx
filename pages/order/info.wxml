@@ -11,6 +11,7 @@
 
 <van-card
   thumb="{{item.courseUrl}}"
+  bindtap="countDownOrder" data-item="{{item}}" 
 >
   <view slot="title">
   <view  class="title">
@@ -25,13 +26,12 @@
  <view><text class="text-color">下单时间: {{item.createTime}}</text></view>
 </view>
 </view>
-
-  <view slot="footer">
-    <van-button size="small" round plain type="info" data-item="{{item}}">去支付</van-button>   
-    <van-button size="small" round plain type="info" bind:click="delOrder" data-orderNumber="{{item.orderNumber}}" style=" margin-left: 10rpx;">删除订单</van-button>   
-  </view>
 </van-card>
-
+<van-divider />
+<view class="cardBottom">
+<view><text>售价: </text><text class="text-price text-red">{{item.price}}</text></view>
+<van-button size="small" plain type="info" data-item="{{item}}"  bind:click="payOrder">去支付</van-button>   
+</view>
 
 
 </view>

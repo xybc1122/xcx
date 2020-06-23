@@ -1,4 +1,5 @@
 import Toast from '../../miniprogram_npm/vant-weapp/toast/toast';
+import Dialog from '../../miniprogram_npm/vant-weapp/dialog/dialog';
 import {request} from '../../utils/request'
 Page({
 
@@ -15,7 +16,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     this.setData({
       itemDescription:JSON.parse(options.item),
       name:wx.getStorageSync('name')
@@ -98,11 +98,13 @@ Page({
     request('/addCourseOrder',{courseId:this.data.itemDescription.courseId,openId:wx.getStorageSync('openid')}).then(res=>{
       const {data:obj}=res
       if(obj.code===-1){
-        wx.showToast({
-          title: obj.message,
-          image: '../icons/error.png'
-         })
-         return
+        Dialog.alert({
+          title: '报名失败',
+          message:  obj.message,
+        }).then(() => {
+          wx.navigateBack()
+        });
+        return
       }
       wx.showToast({title: obj.message })
       setTimeout(()=>{

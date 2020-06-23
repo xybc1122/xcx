@@ -22,48 +22,23 @@ Page({
     let that =this
     //如果是空对象 说明是点查看进来的
    let index= options.index
-    if(index==null){
-      that.getOrderInfo()
-      return
-    }
-    that.setData({
-      active: index
-    })
-    that.getOrderInfo()
+   that.setData({
+    active: index
+  })
   },
-  delOrder(e){
-    Dialog.confirm({
-      title: '提示',
-      message: '确定删除订单吗?',
+  payOrder(){
+    Dialog.alert({
+      title: '温馨提示',
+      message:  '支付功能还没开通哦~',
+    }).then(() => {
+     
+    });
+  },
+  countDownOrder(e){
+    let item=JSON.stringify(e.currentTarget.dataset['item']);
+    wx.navigateTo({
+      url: '../order/count-down?item=' + item
     })
-      .then(() => {
-        const orderNumber= e.currentTarget.dataset.ordernumber
-        request('/order/course-order/delOrder',{orderNumber:orderNumber}).then(res=>{
-         const {data:obj} =res
-         if(obj.code===200){
-           wx.showToast({title: obj.message})
-           this.setData({
-             current:1,
-             offset:10,
-             prePaymentList:[]
-          })
-           this.getOrderInfo()
-           return 
-         }
-         wx.showToast({
-           title: obj.message,
-           image: '../icons/error.png'
-          })
-        }).catch(err=>{
-           wx.showToast({
-             title: '删除订单网络异常',
-             image: '../icons/error.png'
-            }) 
-         })
-      })
-      .catch(() => {
-        // on cancel
-      });
   },
   getOrderInfo(){
     this.setData({
@@ -122,6 +97,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const that =this
+    let index = this.data.active
+    if(index==null){
+      that.setData({
+        current:1,
+        offset:10,
+        prePaymentList:[],
+        active: 0
+      })
+      that.getOrderInfo()
+      return
+    }
+    that.setData({
+      current:1,
+      offset:10,
+      prePaymentList:[],
+      active: Number(index)
+    })
+    that.getOrderInfo()
   },
 
   /**
@@ -180,7 +174,7 @@ Page({
     this.setData({
        current:1,
        offset:10,
-      active:event.detail.index,
+       active:event.detail.index,
       prePaymentList:[]
     })
     this.getOrderInfo()

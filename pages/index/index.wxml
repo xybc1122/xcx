@@ -1,5 +1,4 @@
-<view class="page">
-<view class="page__bd">
+
 
  <view style="margin: 30rpx;" wx:if="{{isLoginType===1}}">
   <van-button icon="good-job" color="#409EFF" size="large"  round type="primary" bindtap="bindViewLogin"  class="container">点击报名</van-button>
@@ -7,9 +6,6 @@
 <view wx:elif="{{isLoginType===2}}">
 
  
-
-
-
   <view  class="wrapper" hidden="{{isListNull}}">
    <view><text class="no_data">暂无数据</text></view>
   </view>
@@ -24,7 +20,7 @@
 <van-card
   price="{{item.coursePrice}}"
   thumb="{{item.courseUrl}}"
->
+bindtap="{{item.courseFull===0?'joinClass':''}}" data-item="{{item}}" >
   <view slot="title">
   <view  class="title">
   <view> {{item.courseTitle}}</view>
@@ -38,7 +34,7 @@
     <view><van-icon name="location" color="#409EFF" /><text> {{item.courseCampus}}</text></view>
   </view>
   <view slot="footer">
-    <van-button size="small" type="info" bindtap="desPay" data-item="{{item}}" wx:if="{{item.courseFull===0}}">加入报班</van-button>
+    <van-button size="small" type="info" wx:if="{{item.courseFull===0}}">加入报班</van-button>
     <van-button size="small" type="danger" wx:else>已报满</van-button>
   </view>
 </van-card>
@@ -58,6 +54,3 @@
 
 
 
-
-</view>
-</view>

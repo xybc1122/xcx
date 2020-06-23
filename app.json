@@ -5,7 +5,8 @@
     "pages/product/description",
     "pages/text/read-text",
     "pages/order/info",
-    "pages/reset/reset-pwd"
+    "pages/reset/reset-pwd",
+    "pages/order/count-down"
   ],
   "useExtendedLib": {
     "weui": true
